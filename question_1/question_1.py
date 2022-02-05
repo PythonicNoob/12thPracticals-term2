@@ -1,7 +1,11 @@
 # Make a stack of dictionaries
 stack = []
-def insert_stack(stack, key, value):
-    stack.append({key: value})
+def insert_stack():
+    global stack
+    key = input("Enter the name of the class: ")
+    Maths, Physics, Biology = [int(x) for x in input("Enter the no of Maths, Physics, Biology students: ").split()]
+    val = {'Phy': Physics, 'Math': Maths, 'Bio': Biology}
+    stack.append({key: val})
 
 def remove_stack(stack):
     stack.pop()
@@ -19,19 +23,6 @@ while True:
     4. Exit
     """)
     choice = input("Would you like to insert, pop from stack, show the stack or exit? (i,r,s,e): ")
-    if choice == "i":
-        class_name = input("Enter the name of the class: ")
-        Maths = int(input("Enter the number of Mathematics students: "))
-        Physics = int(input("Enter the number of Physics students: "))
-        Biology = int(input("Enter the number of Biology students:"))
-        marks = {'Phy': Physics, 'Math': Maths, 'Bio': Biology}
-        insert_stack(stack, class_name, marks)
-    elif choice == "r":
-        remove_stack(stack)
-    elif choice == "s":
-        show_stack(stack)
-    elif choice == "e":
-        print("bye")
-        break
-    else:
+    choices = {"i": insert_stack, "r": remove_stack, "s": show_stack, "e": exit}
+    if choices.get(choice, True):
         print("Invalid choice")
